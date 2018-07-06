@@ -59,3 +59,12 @@ typings/
 
 # next.js build output
 .next
+
+# dist directory
+dist/
+
+# Mac temporary files
+.DS_Store
+
+# IntellijIdea editor config directory
+.idea/
