@@ -8,7 +8,7 @@ require('dotenv').config();
  */
 const displayUsage = () => {
   console.info(`
-  Usage: node index.js [options]
+  Usage: yarn start [options]
 
   Displays help information and exit the program.
   

@@ -26,7 +26,7 @@ Node.JS plugin for DNAI solution
 
 ## Usage
 
-  `node index.js [options]`
+  `yarn start [options]`
 
   Options:
 
