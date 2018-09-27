@@ -1,7 +1,5 @@
 // @flow
-
-import net from 'net';
-import _ from 'struct-fu';
+import ServerConnection from './serverCommunication/ServerConnection';
 
 require('dotenv').config();
 
@@ -23,8 +21,8 @@ const displayUsage = () => {
   process.exit();
 };
 
-let port = 13300;
-const host = '127.0.0.1';
+let port: number = 13300;
+const host: string = '127.0.0.1';
 
 process.argv.forEach((val, index) => {
   if (val.startsWith('--port=')) {
@@ -39,40 +37,7 @@ process.argv.forEach((val, index) => {
   }
 });
 
-const client = new net.Socket();
-const magicNumber = process.env.MAGIC_NUMBER;
-
-const HeaderCommunication = _.struct('HeaderCommunication', [
-  _.int32('magicNumber'),
-  _.uint32('packageSize'),
-  _.uint32('id'),
-]);
-
-const helloWorld = HeaderCommunication.pack({
-  magicNumber,
-  packageSize: HeaderCommunication.size,
-  id: 1,
-});
-
-client.connect(
-  { port, host },
-  () => {
-    console.info(
-      `Connected to ${host}:${port}, sending ${JSON.stringify(
-        HeaderCommunication.unpack(helloWorld)
-      )}`
-    );
-    client.write(helloWorld);
-  }
-);
-
-client.on('data', data => {
-  console.info(`Received: ${data}`);
-});
-
-client.on('close', () => {
-  client.destroy();
-  console.info('Connection closed');
-});
+/* eslint-disable no-new */
+new ServerConnection(host, port);
 
 export default displayUsage;

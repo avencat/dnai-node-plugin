@@ -1,0 +1,182 @@
+[
+  {
+    "name": "DNAI Node.JS Plugin",
+    "size": 256,
+    "type": "CLIENT_AUTHENTICATION"
+  },
+  {
+    "name": "DECLARATOR.DECLARE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "DECLARATOR.MOVE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "DECLARATOR.REMOVE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "DECLARATOR.RENAME",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "DECLARATOR.SET_VISIBILITY",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.CALL",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.ADD_INSTRUCTION",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.REMOVE_INSTRUCTION",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.SET_ENTRY_POINT",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.SET_PARAMETER",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.SET_RETURN",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.INSTRUCTION.LINK_DATA",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.INSTRUCTION.LINK_EXECUTION",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.INSTRUCTION.UNLINK_EXECUTION",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.INSTRUCTION.SET_INPUT_VALUE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.INSTRUCTION.UNLINK_DATA",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "VARIABLE.GET_TYPE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "VARIABLE.GET_VALUE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "VARIABLE.SET_TYPE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "VARIABLE.SET_VALUE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "CLASS.ADD_ATTRIBUTE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "CLASS.REMOVE_ATTRIBUTE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "CLASS.RENAME_ATTRIBUTE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "CLASS.SET_FUNCTION_AS_MEMBER",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "ENUM.GET_VALUE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "ENUM.REMOVE_VALUE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "ENUM.SET_TYPE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "ENUM.SET_VALUE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "LIST.SET_TYPE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "GLOBAL.CREATE_PROJECT",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "GLOBAL.REMOVE_PROJECT",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "GLOBAL.GET_PROJECT_ENTITIES",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "GLOBAL.SAVE",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "GLOBAL.LOAD",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "GLOBAL.RESET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  }
+]
