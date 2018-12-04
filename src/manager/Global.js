@@ -1,26 +1,68 @@
 // @flow
+import { ENTITY_TYPE_ENUM } from '../serverCommunication/Enums';
+import AI from './AI';
+import Utils from '../utils/Utils';
+
+type EntityGetData = {
+  data: {
+    sent: {
+      EntityId: number,
+    },
+    response: {
+      Entity: {
+        Type: number,
+        Name: string,
+        Id: number,
+        Visibility: number,
+      },
+    },
+  },
+};
+
+type LoadedData = {
+  data: {
+    response: {
+      Projects: Array<number>,
+    },
+  },
+};
+
 export default class Global {
-  createProject = (data: string, callback: Function) => {
-    callback('GLOBAL.PROJECT_CREATED');
+  loaded = ({ data }: LoadedData, sendEvent: Function, AIArray: Array<AI>) =>
+    new Promise((resolve) => {
+      data.response.Projects.forEach(EntityId => AIArray.push(new AI(EntityId, sendEvent, resolve)));
+    });
+
+  entityGet = ({ data }: EntityGetData, AIArray: Array<AI>) => {
+    const ai = Utils.getAIByEntityId(AIArray, data.sent.EntityId);
+    if (!ai) {
+      return;
+    }
+
+    switch (ENTITY_TYPE_ENUM[data.response.Entity.Type]) {
+      case 'CONTEXT':
+        break;
+      case 'VARIABLE':
+        ai.addVariable(data.response.Entity);
+        break;
+      case 'FUNCTION':
+        ai.addFunction(data.response.Entity);
+        break;
+      case 'DATA_TYPE':
+        break;
+      case 'ENUM_TYPE':
+        ai.addEnum(data.response.Entity);
+        break;
+      case 'OBJECT_TYPE':
+        break;
+      case 'LIST_TYPE':
+        break;
+      default:
+        break;
+    }
   };
 
-  removeProject = (data: string, callback: Function) => {
-    callback('GLOBAL.PROJECT_REMOVED');
-  };
-
-  getProjectEntities = (data: string, callback: Function) => {
-    callback('GLOBAL.PROJECT_ENTITIES_GET');
-  };
-
-  save = (data: string, callback: Function) => {
-    callback('GLOBAL.SAVED');
-  };
-
-  load = (data: string, callback: Function) => {
-    callback('GLOBAL.LOADED');
-  };
-
-  reset = (data: string, callback: Function) => {
-    callback('GLOBAL.RESET_DONE');
+  resetDone = (data: string) => {
+    console.info('[INFO] GLOBAL.RESET_DONE not yet implemented. Received with =>', data);
   };
 }

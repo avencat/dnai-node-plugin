@@ -1,29 +1,30 @@
 /* eslint-disable no-new-func */
-import Declarator from './Declarator';
-import Function from './Function';
-import Variable from './Variable';
-import Class from './Class';
+import AI from './AI';
 import Enum from './Enum';
 import List from './List';
+import Class from './Class';
 import Global from './Global';
+import Function from './Function';
+import Variable from './Variable';
 import Utils from '../utils/Utils';
+import Declarator from './Declarator';
 
 export default class EventsManager {
-  DECLARATOR = new Declarator();
-
-  FUNCTION = new Function();
-
-  VARIABLE = new Variable();
-
   CLASS = new Class();
+
+  DECLARATOR = new Declarator();
 
   ENUM = new Enum();
 
-  LIST = new List();
+  FUNCTION = new Function();
 
   GLOBAL = new Global();
 
-  process = (eventType: string, event: string, data: string, callback: Function) => {
+  LIST = new List();
+
+  VARIABLE = new Variable();
+
+  process = (eventType: string, event: string, data: string, sendEvent: Function, AIArray: Array<AI>) => {
     const fullEventName = Utils.fromUnderscoreToCamelCase(event);
     const eventName = Utils.getFirstWord(fullEventName);
 
@@ -31,6 +32,10 @@ export default class EventsManager {
       return;
     }
 
-    this[eventType][eventName](data, callback, Utils.getStringAfterFirstWord(fullEventName));
+    if (eventType === 'FUNCTION' && eventName === 'instruction') {
+      this.FUNCTION.instruction(data, Utils.getStringAfterFirstWord(fullEventName), AIArray);
+    } else {
+      this[eventType][eventName](data, AIArray);
+    }
   };
 }

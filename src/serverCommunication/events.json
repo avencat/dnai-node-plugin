@@ -5,178 +5,58 @@
     "type": "CLIENT_AUTHENTICATION"
   },
   {
-    "name": "DECLARATOR.DECLARE",
+    "name": "DECLARATOR.CHILDREN_GET",
     "size": 261,
     "type": "REGISTER_EVENT"
   },
   {
-    "name": "DECLARATOR.MOVE",
+    "name": "FUNCTION.CALLED",
     "size": 261,
     "type": "REGISTER_EVENT"
   },
   {
-    "name": "DECLARATOR.REMOVE",
+    "name": "GLOBAL.LOADED",
     "size": 261,
     "type": "REGISTER_EVENT"
   },
   {
-    "name": "DECLARATOR.RENAME",
+    "name": "GLOBAL.PROTOCOL_SET",
     "size": 261,
     "type": "REGISTER_EVENT"
   },
   {
-    "name": "DECLARATOR.SET_VISIBILITY",
+    "name": "GLOBAL.ENTITY_GET",
     "size": 261,
     "type": "REGISTER_EVENT"
   },
   {
-    "name": "FUNCTION.CALL",
+    "name": "VARIABLE.VALUE_GET",
     "size": 261,
     "type": "REGISTER_EVENT"
   },
   {
-    "name": "FUNCTION.ADD_INSTRUCTION",
+    "name": "ENUM.VALUES_GET",
     "size": 261,
     "type": "REGISTER_EVENT"
   },
   {
-    "name": "FUNCTION.REMOVE_INSTRUCTION",
+    "name": "FUNCTION.CALLED",
     "size": 261,
     "type": "REGISTER_EVENT"
   },
   {
-    "name": "FUNCTION.SET_ENTRY_POINT",
+    "name": "FUNCTION.PARAMS_GET",
     "size": 261,
     "type": "REGISTER_EVENT"
   },
   {
-    "name": "FUNCTION.SET_PARAMETER",
+    "name": "FUNCTION.RETURNS_GET",
     "size": 261,
     "type": "REGISTER_EVENT"
   },
   {
-    "name": "FUNCTION.SET_RETURN",
+    "name": "GLOBAL.SET_PROTOCOL",
     "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "FUNCTION.INSTRUCTION.LINK_DATA",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "FUNCTION.INSTRUCTION.LINK_EXECUTION",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "FUNCTION.INSTRUCTION.UNLINK_EXECUTION",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "FUNCTION.INSTRUCTION.SET_INPUT_VALUE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "FUNCTION.INSTRUCTION.UNLINK_DATA",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "VARIABLE.GET_TYPE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "VARIABLE.GET_VALUE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "VARIABLE.SET_TYPE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "VARIABLE.SET_VALUE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "CLASS.ADD_ATTRIBUTE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "CLASS.REMOVE_ATTRIBUTE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "CLASS.RENAME_ATTRIBUTE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "CLASS.SET_FUNCTION_AS_MEMBER",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "ENUM.GET_VALUE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "ENUM.REMOVE_VALUE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "ENUM.SET_TYPE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "ENUM.SET_VALUE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "LIST.SET_TYPE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "GLOBAL.CREATE_PROJECT",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "GLOBAL.REMOVE_PROJECT",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "GLOBAL.GET_PROJECT_ENTITIES",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "GLOBAL.SAVE",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "GLOBAL.LOAD",
-    "size": 261,
-    "type": "REGISTER_EVENT"
-  },
-  {
-    "name": "GLOBAL.RESET",
-    "size": 261,
-    "type": "REGISTER_EVENT"
+    "type": "SEND_PROTOCOL"
   }
 ]

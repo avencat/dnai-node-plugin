@@ -1,18 +1,25 @@
 // @flow
+import Utils from '../utils/Utils';
+import AI from './AI';
+
+type ValuesGetData = {
+  data: {
+    response: {
+      Values: {},
+    },
+    sent: {
+      EntityId: number,
+    },
+  },
+};
+
 export default class Enum {
-  getValue = (data: string, callback: Function) => {
-    callback('ENUM.VALUE_GET');
-  };
+  valuesGet = ({ data }: ValuesGetData, AIArray: Array<AI>) => {
+    const ai = Utils.getAIByEntityId(AIArray, data.sent.EntityId);
+    if (!ai) {
+      return;
+    }
 
-  removeValue = (data: string, callback: Function) => {
-    callback('ENUM.VALUE_REMOVED');
-  };
-
-  setType = (data: string, callback: Function) => {
-    callback('ENUM.TYPE_SET');
-  };
-
-  setValue = (data: string, callback: Function) => {
-    callback('ENUM.VALUE_SET');
+    ai.addEnumValues(data.sent.EntityId, data.response.Values);
   };
 }

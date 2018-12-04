@@ -1,22 +1,28 @@
 // @flow
+import AI from './AI';
+import Utils from '../utils/Utils';
+
+type ChildrenGetData = {
+  data: {
+    sent: {
+      EntityId: number,
+    },
+    response: {
+      Children: Array<number>,
+    },
+  },
+};
+
 export default class Declarator {
-  declare = (data: string, callback: Function) => {
-    callback('DECLARATOR.DECLARED');
-  };
+  childrenGet = ({ data }: ChildrenGetData, AIArray: Array<AI>) => {
+    const ai = Utils.getAIByAIId(AIArray, data.sent.EntityId);
 
-  move = (data: string, callback: Function) => {
-    callback('DECLARATOR.MOVED');
-  };
+    if (ai) {
+      ai.receive();
 
-  remove = (data: string, callback: Function) => {
-    callback('DECLARATOR.REMOVED');
-  };
-
-  rename = (data: string, callback: Function) => {
-    callback('DECLARATOR.RENAMED');
-  };
-
-  setVisibility = (data: string, callback: Function) => {
-    callback('DECLARATOR.VISIBILITY_SET');
+      data.response.Children.forEach((EntityId: number) => {
+        ai.addEntity(EntityId);
+      });
+    }
   };
 }

@@ -1,6 +1,6 @@
 // @flow
 export default class List {
-  setType = (data: string, callback: Function) => {
-    callback('LIST.TYPE_SET');
+  typeSet = (data: string) => {
+    console.info('[INFO] LIST.TYPE_SET not yet implemented. Received with =>', data);
   };
 }

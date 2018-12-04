@@ -1,52 +1,74 @@
 // @flow
 import Utils from '../utils/Utils';
+import AI from './AI';
+import type { Entity } from '../serverCommunication/AIObjects';
+
+type CalledData = {
+  data: {
+    response: {},
+    sent: {
+      EntityId: number,
+    },
+  },
+};
+
+type ParamsGetData = {
+  data: {
+    response: {
+      Parameters: Array<Entity>,
+    },
+    sent: {
+      EntityId: number,
+    },
+  },
+};
+
+type ReturnsGetData = {
+  data: {
+    response: {
+      Returns: Array<Entity>,
+    },
+    sent: {
+      EntityId: number,
+    },
+  },
+};
 
 export default class Function {
-  call = (data: string, callback: Function) => {
-    callback('FUNCTION.CALLED');
+  instruction = (data: string, event: string) => {
+    /* eslint-disable flowtype-errors/show-errors */
+    this[`instruction${Utils.firstLetterToUpperCase(event)}`](data);
+    /* eslint-enable flowtype-errors/show-errors */
   };
 
-  addInstruction = (data: string, callback: Function) => {
-    callback('FUNCTION.INSTRUCTION_ADDED');
+  instructionDataLinked = (data: string) => {
+    console.info('[INFO] FUNCTION.INSTRUCTION.DATA_LINKED not yet implemented. Received with =>', data);
   };
 
-  removeInstruction = (data: string, callback: Function) => {
-    callback('FUNCTION.INSTRUCTION_REMOVED');
+  called = ({ data }: CalledData, AIArray: Array<AI>) => {
+    const ai = Utils.getAIByEntityId(AIArray, data.sent.EntityId);
+    if (!ai) {
+      return;
+    }
+
+    console.info('[INFO] FUNCTION.CALLED not yet implemented. Received with =>', data);
   };
 
-  setEntryPoint = (data: string, callback: Function) => {
-    callback('FUNCTION.ENTRY_POINT_SET');
+  paramsGet = ({ data }: ParamsGetData, AIArray: Array<AI>) => {
+    const ai = Utils.getAIByEntityId(AIArray, data.sent.EntityId);
+    if (!ai) {
+      return;
+    }
+
+    ai.addFunctionParameters(data.sent.EntityId, data.response.Parameters);
   };
 
-  setParameter = (data: string, callback: Function) => {
-    callback('FUNCTION.PARAMETER_SET');
-  };
+  returnsGet = ({ data }: ReturnsGetData, AIArray: Array<AI>) => {
+    const ai = Utils.getAIByEntityId(AIArray, data.sent.EntityId);
+    if (!ai) {
+      return;
+    }
 
-  setReturn = (data: string, callback: Function) => {
-    callback('FUNCTION.RETURN_SET');
-  };
-
-  instruction = (data: string, callback: Function, event: string) => {
-    this[`instruction${Utils.firstLetterToUpperCase(event)}`](data, callback);
-  };
-
-  instructionLinkData = (data: string, callback: Function) => {
-    callback('FUNCTION.INSTRUCTION.DATA_LINKED');
-  };
-
-  instructionLinkExecution = (data: string, callback: Function) => {
-    callback('FUNCTION.INSTRUCTION.EXECUTION_LINKED');
-  };
-
-  instructionUnlinkExecution = (data: string, callback: Function) => {
-    callback('FUNCTION.INSTRUCTION.EXECUTION_UNLINKED');
-  };
-
-  instructionSetInputValue = (data: string, callback: Function) => {
-    callback('FUNCTION.INSTRUCTION.INPUT_VALUE_SET');
-  };
-
-  instructionUnlinkData = (data: string, callback: Function) => {
-    callback('FUNCTION.INSTRUCTION.DATA_UNLINKED');
+    ai.addFunctionReturns(data.sent.EntityId, data.response.Returns);
   };
 }
