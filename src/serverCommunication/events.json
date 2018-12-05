@@ -1,0 +1,72 @@
+[
+  {
+    "name": "DNAI Node.JS Plugin",
+    "size": 256,
+    "type": "CLIENT_AUTHENTICATION"
+  },
+  {
+    "name": "DECLARATOR.CHILDREN_GET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.CALLED",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "GLOBAL.LOADED",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "GLOBAL.PROTOCOL_SET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "GLOBAL.ENTITY_GET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "VARIABLE.VALUE_GET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "VARIABLE.TYPE_GET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "VARIABLE.VALUE_SET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "ENUM.VALUES_GET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.CALLED",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.PARAMS_GET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "FUNCTION.RETURNS_GET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "GLOBAL.SET_PROTOCOL",
+    "size": 261,
+    "type": "SEND_PROTOCOL"
+  }
+]
