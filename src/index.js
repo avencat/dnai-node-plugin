@@ -15,9 +15,6 @@ import AI from './manager/AI';
 import ServerConnection from './serverCommunication/ServerConnection';
 import type { Options } from './serverCommunication/CommunicationStructs';
 
-/**
- * This function outputs the usage of the program.
- */
 const displayUsage = () => {
   console.info(`
   Usage: yarn start [options]
