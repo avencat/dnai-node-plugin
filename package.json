@@ -1,8 +1,8 @@
 {
   "name": "dnai-node-plugin",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha",
   "description": "Node.JS plugin for DNAI Solution",
-  "private": true,
+  "private": false,
   "license": "All rights reserved to DNAI©",
   "main": "dist/index.js",
   "repository": "https://github.com/avencat/dnai-node-plugin.git",
