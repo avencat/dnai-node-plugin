@@ -35,6 +35,16 @@
     "type": "REGISTER_EVENT"
   },
   {
+    "name": "VARIABLE.TYPE_GET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
+    "name": "VARIABLE.VALUE_SET",
+    "size": 261,
+    "type": "REGISTER_EVENT"
+  },
+  {
     "name": "ENUM.VALUES_GET",
     "size": 261,
     "type": "REGISTER_EVENT"

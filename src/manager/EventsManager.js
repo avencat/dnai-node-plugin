@@ -8,8 +8,22 @@ import Function from './Function';
 import Variable from './Variable';
 import Utils from '../utils/Utils';
 import Declarator from './Declarator';
+import type { Options } from '../serverCommunication/CommunicationStructs';
+
+type Data = {
+  data: {
+    sent: any,
+    response: any,
+  },
+};
 
 export default class EventsManager {
+  options: Options;
+
+  constructor(options: Options) {
+    this.options = options;
+  }
+
   CLASS = new Class();
 
   DECLARATOR = new Declarator();
@@ -24,7 +38,7 @@ export default class EventsManager {
 
   VARIABLE = new Variable();
 
-  process = (eventType: string, event: string, data: string, sendEvent: Function, AIArray: Array<AI>) => {
+  process = (eventType: string, event: string, data: Data, sendEvent: Function, AIArray: Array<AI>) => {
     const fullEventName = Utils.fromUnderscoreToCamelCase(event);
     const eventName = Utils.getFirstWord(fullEventName);
 
@@ -32,6 +46,9 @@ export default class EventsManager {
       return;
     }
 
+    if (this.options.verbose) {
+      console.info(`[INFO] Manager.Command ${JSON.stringify(data.data.response, null, 2)}`);
+    }
     if (eventType === 'FUNCTION' && eventName === 'instruction') {
       this.FUNCTION.instruction(data, Utils.getStringAfterFirstWord(fullEventName), AIArray);
     } else {

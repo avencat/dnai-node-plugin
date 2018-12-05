@@ -5,22 +5,25 @@ import AI from '../manager/AI';
 import Events from './events.json';
 import Utils from '../utils/Utils';
 import type { DataReceivedType } from './AIObjects';
-import type { Event } from './CommunicationStructs';
 import EventsManager from '../manager/EventsManager';
+import type { Event, Options } from './CommunicationStructs';
 import { EVENT_RECEIVED_STRUCT, EVENT_TYPE, HEADER_COMMUNICATION } from './CommunicationStructs';
 
 export default class ServerConnection {
   file: ?string;
   isReady: ?Function;
+  options: Options;
 
   AIArray: Array<AI> = [];
   client = new net.Socket();
-  magicNumber = process.env.MAGIC_NUMBER;
-  eventManager = new EventsManager();
+  magicNumber = 0x44756c79;
+  eventManager: EventsManager;
 
-  constructor(host: string, port: number, file: ?string = null, isReady: ?Function = null) {
+  constructor(host: string, port: number, file: ?string = '', isReady: ?Function = null, options: Options) {
     this.file = file;
     this.isReady = isReady;
+    this.options = options;
+    this.eventManager = new EventsManager(options);
 
     this.connect(
       host,
@@ -35,7 +38,9 @@ export default class ServerConnection {
       _.struct('Event', [ _.char('name', 100), _.char('data', eventReceived.Header.packageSize - 100) ]),
     ]).unpack(data);
 
-    console.info(`[INFO] Network.received(${JSON.stringify(dataReceived.Event.name)})`);
+    if (this.options.verbose) {
+      console.info(`\n[INFO] Network.received(${dataReceived.Event.name})`);
+    }
 
     if (dataReceived.Event.name === 'GLOBAL.LOADED') {
       const jsonArray = `[${dataReceived.Event.data.split('}{').join('},{')}]`;
@@ -46,8 +51,13 @@ export default class ServerConnection {
         response: dataArray[1],
       };
 
-      this.eventManager.GLOBAL.loaded(dataReceived.Event, this.sendResponse, this.AIArray).then(() => {
-        console.info('AI is ready!');
+      this.eventManager.GLOBAL.loaded(dataReceived.Event, this.sendResponse, this.AIArray, this.options).then(() => {
+        if (this.options.verbose) {
+          console.info('[INFO] AI is ready!');
+        }
+        if (this.isReady && typeof this.isReady === 'function') {
+          this.isReady(this.AIArray);
+        }
       });
     } else {
       this.processResponse(dataReceived);
@@ -59,10 +69,10 @@ export default class ServerConnection {
     Object.assign(dataReceived, dataReceivedImmutable);
 
     if (dataReceived.Event.name === 'GLOBAL.PROTOCOL_SET') {
-      this.sendEvent(
-        { name: 'GLOBAL.LOAD_FROM', type: 'SEND_EVENT' },
-        JSON.stringify({ Filename: `${process.cwd()}/moreorless30.dnai` }),
-      );
+      if (this.options.verbose) {
+        console.info('\n[INFO] Network.send(GLOBAL.LOAD_FROM)');
+      }
+      this.sendEvent({ name: 'GLOBAL.LOAD_FROM', type: 'SEND_EVENT' }, JSON.stringify({ Filename: this.file }));
     } else {
       const jsonArray = `[${dataReceived.Event.data.split('}{').join('},{')}]`;
       const dataArray = JSON.parse(jsonArray);
@@ -134,7 +144,9 @@ export default class ServerConnection {
 
   sendPackage = {
     CLIENT_AUTHENTICATION: (event: Event) => {
-      console.info(`[INFO] Authenticate ${event.name}\n`);
+      if (this.options.verbose) {
+        console.info(`[INFO] Authenticate ${event.name}\n`);
+      }
 
       this.client.write(EVENT_TYPE[event.type].STRUCT.pack({
         Header: {
@@ -146,17 +158,23 @@ export default class ServerConnection {
       }));
     },
     REGISTER_EVENT: (event: Event) => {
-      console.info(`[INFO] Registering event ${event.name}`);
+      if (this.options.verbose) {
+        console.info(`[INFO] Registering event ${event.name}`);
+      }
 
       this.registerEvent(event, '1');
     },
     SEND_EVENT: (event: Event, data: string) => {
-      console.info(`[INFO] Sending event ${event.name}`);
+      if (this.options.verbose) {
+        console.info(`[INFO] Network.replied(${event.name})`);
+      }
 
       this.sendEvent(event, data);
     },
     SEND_PROTOCOL: (event: Event) => {
-      console.info(`[INFO] Sending event ${event.name}`);
+      if (this.options.verbose) {
+        console.info(`\n[INFO] Network.send(${event.name})`);
+      }
 
       this.sendJSONProtocol(event);
     },
@@ -173,7 +191,9 @@ export default class ServerConnection {
     this.client.on('close', this.disconnect);
 
     this.client.on('connect', () => {
-      console.info(`\n[INFO] Connected to ${host}:${port}.\n`);
+      if (this.options.verbose) {
+        console.info(`\n[INFO] Connected to ${host}:${port}.\n`);
+      }
 
       Events.forEach((event) => {
         this.sendPackage[event.type](event);
@@ -183,6 +203,6 @@ export default class ServerConnection {
 
   disconnect = () => {
     this.client.destroy();
-    console.info('Connection closed');
+    console.info('[INFO DNAI]Connection closed');
   };
 }

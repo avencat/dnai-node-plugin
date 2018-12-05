@@ -40,5 +40,9 @@ type Event = {
   type: string,
 };
 
+type Options = {
+  verbose: boolean,
+};
+
 export { EVENT_STRUCT, EVENT_RECEIVED_STRUCT, EVENT_TYPE, HEADER_COMMUNICATION, SET_PROTOCOL_PARAMETER };
-export type { Event };
+export type { Event, Options };

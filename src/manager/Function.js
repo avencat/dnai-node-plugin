@@ -5,9 +5,11 @@ import type { Entity } from '../serverCommunication/AIObjects';
 
 type CalledData = {
   data: {
-    response: {},
+    response: {
+      Returns: {},
+    },
     sent: {
-      EntityId: number,
+      FuncId: number,
     },
   },
 };
@@ -46,12 +48,12 @@ export default class Function {
   };
 
   called = ({ data }: CalledData, AIArray: Array<AI>) => {
-    const ai = Utils.getAIByEntityId(AIArray, data.sent.EntityId);
+    const ai = Utils.getAIByEntityId(AIArray, data.sent.FuncId);
     if (!ai) {
       return;
     }
 
-    console.info('[INFO] FUNCTION.CALLED not yet implemented. Received with =>', data);
+    ai.called(data.response.Returns);
   };
 
   paramsGet = ({ data }: ParamsGetData, AIArray: Array<AI>) => {

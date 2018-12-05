@@ -32,6 +32,7 @@
     "build": "babel src -d dist --copy-files",
     "preversion": "npm run lint && npm test && npm run build",
     "version": "standard-changelog && git add CHANGELOG.md",
+    "prepublish": "npm run prettier && npm run lint && npm run build",
     "postpublish": "git push origin master --follow-tags",
     "start": "node dist/index.js"
   },
@@ -42,7 +43,6 @@
     "generator-nod"
   ],
   "dependencies": {
-    "dotenv": "^6.0.0",
     "struct-fu": "^1.2.1"
   },
   "devDependencies": {
